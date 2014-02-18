@@ -3,6 +3,8 @@ ToDo:
 Stacked Layout
 delete all countries with none (now deleted in data)
 implement calculation for rankings 
+
+Sonderzeichen?
 */
 
 (function(){
@@ -111,8 +113,8 @@ implement calculation for rankings
 
     	countries.append( 'text' )
     	    .attr( 'class', 'label' )
-    	    .attr( 'y', y.rangeBand()-7 )
-            .attr( 'x', 0 )
+    	    .attr( 'y', y.rangeBand() )
+            .attr( 'x', -30 )
     	    .attr("text-anchor", "start")
     	    .text( function(d) { return d.Deutsche_Bezeichnung } );
 
