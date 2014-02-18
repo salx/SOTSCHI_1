@@ -25,12 +25,13 @@ Sonderzeichen?
     	.scale(x)
     	.orient("top")
 
-    /* later: tip, medals, country etc.
+    //later: tip, medals, country etc.
     var tip = d3.tip()
         .attr("class", "d3-tip")
         .offset([-10,0])
-        .html( function(d){....})
-    */
+        .html( function(d){return "<text>" + d.Deutsche_Bezeichnung + ":</br>" + d.Gold + " Gold, " 
+            + d.Silber + " Silber, " + d.Bronze + " Bronze, </br> Medaillen: "
+            + d.Summe + "</br>Medaillen-Punkte: " + d.Score + "</text>"})
 
     var svg = d3.select("body")
     	.append("svg")
@@ -39,7 +40,7 @@ Sonderzeichen?
     	.append("g")
     	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    //svg.call(tip);
+    svg.call(tip);
 
     var data;
     var input = "offiziell";
@@ -90,7 +91,7 @@ Sonderzeichen?
             .attr("y", 10)
     		.attr("dy", "0.71em")
     		.style("text-anchor", "end")
-    		.text("Score");
+    		.text("Medaillen-Punkte");
 
     	var countries = svg.selectAll(".countries")
     		.data(data)
@@ -108,8 +109,8 @@ Sonderzeichen?
     			return x(d.Score);
     		})
     		.attr("fill", "#6b486b")//nachher als css
-            //.on("mouseover", tip.show)
-            //.on("mouseout", tip.hide);
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide);
 
     	countries.append( 'text' )
     	    .attr( 'class', 'label' )
